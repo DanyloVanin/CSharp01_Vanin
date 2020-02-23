@@ -89,10 +89,12 @@ namespace CSharp_Vanin_01.ViewModels
         }
         private string CountAge()
         {
-           DateTime currentDate = DateTime.Today;
-           int daysOfLife = (currentDate - Date).Days;
-           int years = daysOfLife / 365;
-           if (daysOfLife < 0 || years > 135) throw new ArgumentException("Wrong Date!");
+           DateTime today = DateTime.Today;
+           int years = today.Year - Date.Year;
+           if ((today.Month < Date.Month) ||
+               (today.Month == Date.Month && today.Day < Date.Day)) years--;
+           if (years < 0) throw new ArgumentException("InvalidBirthDate - Date is too far in the future");
+           if (years > 135) throw new ArgumentException("InvalidBirthDate - Date is too far in the past");
            return years.ToString();
         }
         private string FindChineseZodiac()
