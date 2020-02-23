@@ -62,6 +62,7 @@ namespace CSharp_Vanin_01.ViewModels
                 return _analyzeDateCommand ??= new RelayCommand<object>(AnalyzeBirthDate);
             }
         }
+
         #endregion
 
         internal BirthdayAnalyzerViewModel()
@@ -91,7 +92,7 @@ namespace CSharp_Vanin_01.ViewModels
            DateTime currentDate = DateTime.Today;
            int daysOfLife = (currentDate - Date).Days;
            int years = daysOfLife / 365;
-           if(daysOfLife<0 || years>135) throw new ArgumentException("Wrong Date!");
+           if (daysOfLife < 0 || years > 135) throw new ArgumentException("Wrong Date!");
            return years.ToString();
         }
         private string FindChineseZodiac()
